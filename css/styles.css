@@ -95,14 +95,19 @@
     /* ========== MOTION / ANIMACIONES PORSCHE ========== */
     /* Duraciones estándar */
     --p-duration-sm: 0.25s;
-    --p-duration-md: 0.4s;
-    --p-duration-lg: 0.6s;
+    --p-duration-md: 0.5s;
+    --p-duration-lg: 0.75s;
     --p-duration-xl: 1.2s;
     
-    /* Easing functions profesionales */
-    --p-ease-in-out: cubic-bezier(0.25, 0.1, 0.25, 1);
-    --p-ease-in: cubic-bezier(0, 0, 0.2, 1);
-    --p-ease-out: cubic-bezier(0.4, 0, 0.5, 1);
+    /* Easing functions profesionales - Curvas de Bézier sofisticadas */
+    --p-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+    --p-ease-in: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --p-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --p-ease-in-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --p-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --p-ease-out-cubic: cubic-bezier(0.22, 1, 0.36, 1);
+    --p-ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --p-ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
     
     /* Transición personalizada */
     --porsche-transition: all var(--p-duration-md) var(--p-ease-in-out);
@@ -132,11 +137,12 @@ body.dark-mode {
     padding: 0;                         /* Sin margen interno */
 }
 
-/* Transiciones suaves para cambios de tema en todos los elementos */
+/* Transiciones suaves y profesionales para cambios de tema en todos los elementos */
 *:not(.porsche-btn-toggle .theme-icon) {
-    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: background-color var(--p-duration-xl) var(--p-ease-in-out),
+                color var(--p-duration-xl) var(--p-ease-in-out),
+                border-color var(--p-duration-xl) var(--p-ease-in-out),
+                box-shadow var(--p-duration-xl) var(--p-ease-in-out);
 }
 
 /* Estilos generales del body */
@@ -145,8 +151,8 @@ body {
     font-weight: var(--p-font-weight-normal);
     background-color: var(--porsche-bg); /* Fondo que cambia con tema */
     color: var(--porsche-text);         /* Texto que cambia con tema */
-    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave profesional */
+    transition: background-color var(--p-duration-xl) var(--p-ease-in-out),
+                color var(--p-duration-xl) var(--p-ease-in-out); /* Transición profesional */
     word-wrap: break-word;              /* Ajusta palabras largas */
     word-break: break-word;             /* Quiebra palabras si es necesario */
     overflow-x: auto;                   /* Permite scroll si es absolutamente necesario */
@@ -213,8 +219,10 @@ a:focus-visible {
     backdrop-filter: blur(12px);        /* Efecto de vidrio borroso */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
     z-index: var(--z-navbar);           /* Por encima de otros elementos */
-    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: background-color var(--p-duration-xl) var(--p-ease-in-out),
+                border-bottom var(--p-duration-xl) var(--p-ease-in-out),
+                backdrop-filter var(--p-duration-lg) var(--p-ease-in-out);
+    will-change: background-color, border-bottom;
 }
 
 /* Secciones de la navbar: izquierda y derecha */
@@ -271,17 +279,38 @@ a:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                filter 0.3s ease;
-    will-change: transform;
+    transition: transform var(--p-duration-md) var(--p-ease-elastic),
+                filter var(--p-duration-sm) ease,
+                box-shadow var(--p-duration-md) var(--p-ease-in-out);
+    will-change: transform, filter;
+    position: relative;
+}
+
+.porsche-btn-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform var(--p-duration-md) var(--p-ease-out-quart);
+    pointer-events: none;
 }
 
 .porsche-btn-toggle:hover {
-    transform: scale(1.15) rotate(-15deg);
+    transform: scale(1.12) rotate(-12deg);
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.15));
 }
 
 .porsche-btn-toggle:active {
-    transform: scale(0.9) rotate(15deg);
+    transform: scale(0.95) rotate(8deg);
+}
+
+.porsche-btn-toggle:hover::before {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .theme-icon {
@@ -319,14 +348,15 @@ a:focus-visible {
     height: 100%;
     background: rgba(0, 0, 0, 0);      /* Transparente inicialmente */
     backdrop-filter: blur(0px);         /* Sin blur inicialmente */
-    transition: background-color var(--p-duration-md) var(--p-ease-in-out),
-                backdrop-filter var(--p-duration-md) var(--p-ease-in-out); /* Transición suave */
+    transition: background-color var(--p-duration-lg) var(--p-ease-in-out),
+                backdrop-filter var(--p-duration-lg) var(--p-ease-in-out);
+    will-change: background-color, backdrop-filter;
 }
 
 /* Overlay activo: oscurece y aplica blur */
 .porsche-sidebar-wrapper.active .sidebar-overlay {
     background: rgba(0, 0, 0, 0.75);    /* Oscuridad más profunda en ambos temas */
-    backdrop-filter: blur(10px);        /* Blur pronunciado */
+    backdrop-filter: blur(16px);        /* Blur más pronunciado */
 }
 
 /* Contenido principal del sidebar con fondo blanco fijo */
@@ -343,10 +373,12 @@ a:focus-visible {
     padding: var(--porsche-spacing-lg); /* Espacio interno */
     display: flex;
     flex-direction: column;             /* Elementos apilados verticalmente */
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3); /* Sombra más profunda */
     z-index: var(--z-sidebar-content);  /* Por encima del overlay */
-    transition: left var(--p-duration-lg) var(--p-ease-in-out),
-                transform var(--p-duration-lg) var(--p-ease-in-out); /* Animación fluida */
+    transition: left var(--p-duration-lg) var(--p-ease-out-quart),
+                transform var(--p-duration-lg) var(--p-ease-out-quart),
+                box-shadow var(--p-duration-lg) var(--p-ease-in-out);
+    will-change: left, transform, box-shadow;
 }
 
 /* Asegura que el sidebar no se expanda más allá de lo necesario */
@@ -361,10 +393,11 @@ body.dark-mode .sidebar-content {
     border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Cuando el sidebar está activo, desliza el contenido */
+/* Cuando el sidebar está activo, desliza el contenido con efecto suave */
 .porsche-sidebar-wrapper.active .sidebar-content {
     left: 0;                            /* Entra completamente */
-    transform: translateX(0);           /* Sin desplazamiento */
+    transform: translateX(0);
+    box-shadow: -20px 0 80px rgba(0, 0, 0, 0.4);
 }
 
 /* Encabezado del sidebar con botón de cerrar */
@@ -427,28 +460,46 @@ body.dark-mode .sidebar-content {
     display: flex;
     justify-content: space-between;     /* Texto izq, flecha der */
     align-items: center;
-    transition: all var(--p-duration-md) var(--p-ease-in-out);
+    transition: all var(--p-duration-md) var(--p-ease-in-out),
+                padding-left var(--p-duration-md) var(--p-ease-out-quad);
+    position: relative;
+}
+
+.menu-parent-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #000000;
+    transition: width var(--p-duration-md) var(--p-ease-out-quart);
 }
 
 /* Hover: destaca el botón principal */
 .menu-parent-btn:hover {
-    padding-left: 6px;
-    opacity: 0.7;
+    padding-left: 8px;
+    color: #000000;
 }
 
-/* Flecha minimalista */
+.menu-parent-btn:hover::before {
+    width: 100%;
+}
+
+/* Flecha minimalista con animación profesional */
 .menu-arrow {
     display: inline-block;
-    transition: transform var(--p-duration-md) var(--p-ease-in-out);
+    transition: transform var(--p-duration-md) var(--p-ease-elastic);
     font-size: 1.2rem;
     font-weight: 300;
     opacity: 0.6;                       /* Visible pero sutíl */
     color: #000000;                     /* Negra fija */
+    transform-origin: center;
 }
 
-/* Flecha rotada cuando el menú está activo */
+/* Flecha rotada con efecto cuando el menú está activo */
 .menu-parent-btn.active .menu-arrow {
-    transform: rotate(90deg);           /* Gira 90 grados */
+    transform: rotate(90deg) scale(1.1);
     opacity: 1;                         /* Más visible */
 }
 
@@ -457,37 +508,42 @@ body.dark-mode .sidebar-content {
     list-style: none;
     max-height: 0;                      /* Oculto inicialmente */
     overflow: hidden;                   /* Recorta el contenido */
-    transition: max-height var(--p-duration-md) var(--p-ease-in-out), 
-                opacity var(--p-duration-md) var(--p-ease-in-out); /* Animación suave */
+    transition: max-height var(--p-duration-lg) var(--p-ease-out-cubic),
+                opacity var(--p-duration-lg) var(--p-ease-in-out),
+                padding var(--p-duration-lg) var(--p-ease-in-out);
     opacity: 0;                         /* Invisible */
     padding: 0;
+    will-change: max-height, opacity;
 }
 
 /* Submenú visible cuando el padre está activo */
 .menu-parent-btn.active ~ .submenu {
     max-height: 600px;                  /* Altura máxima para expandir */
     opacity: 1;                         /* Visible */
-    padding: 8px 0;                     /* Espaciado */
+    padding: 12px 0;                    /* Espaciado */
 }
 
 /* Enlaces dentro del submenú */
 .submenu-link {
     display: block;
-    padding: 8px 0 8px 20px;            /* Indentado respecto al padre */
+    padding: 10px 0 10px 20px;          /* Indentado respecto al padre */
     color: #000000;                     /* Texto negro fijo */
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 400;                   /* Normal, no grueso */
     opacity: 0.7;                       /* Más tenue */
-    transition: all var(--p-duration-md) var(--p-ease-in-out);
-    border-left: 2px solid transparent; /* Borde izquierdo invisible */
+    transition: all var(--p-duration-md) var(--p-ease-out-quad),
+                padding-left var(--p-duration-md) var(--p-ease-out-quad);
+    border-left: 3px solid transparent; /* Borde izquierdo invisible */
+    position: relative;
 }
 
-/* Hover: destaca el link del submenú */
+/* Hover: destaca el link del submenú con efecto profesional */
 .submenu-link:hover {
     opacity: 1;                         /* Totalmente visible */
-    padding-left: 26px;                 /* Más indentación */
+    padding-left: 28px;                 /* Más indentación */
     border-left-color: #000000;         /* Borde negro fijo */
+    transform: translateX(4px);
 }
 
 /* Enlaces del menú */

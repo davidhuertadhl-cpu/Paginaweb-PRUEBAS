@@ -108,30 +108,85 @@ function filterProducts(filters) {
         
         if (shouldShow) {
             card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.3s ease';
+            card.style.animation = 'fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
         } else {
             card.style.display = 'none';
+            card.style.animation = 'fadeOutDown 0.4s cubic-bezier(0.42, 0, 0.58, 1)';
         }
     });
 }
 
-// Agregar animación fade
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-`;
-document.head.appendChild(style);
+// Agregar animaciones profesionales
+if (!document.getElementById('catalog-animations')) {
+    const style = document.createElement('style');
+    style.id = 'catalog-animations';
+    style.textContent = `
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(24px) scale(0.94);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes fadeOutDown {
+            from { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+            to { 
+                opacity: 0; 
+                transform: translateY(24px) scale(0.94);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Aplicar stagger a las tarjetas de productos en carga
+const applyProductStagger = () => {
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.06}s`;
+    });
+};
+
+window.addEventListener('DOMContentLoaded', applyProductStagger);
 
 // ========== 7. BOTÓN LIMPIAR FILTROS ==========
 clearFiltersBtn.addEventListener('click', () => {
+    // Animación del botón
+    clearFiltersBtn.style.animation = 'buttonPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    
+    // Limpiar filtros con transición
     filterCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
+    
     applyFilters();
+    
+    // Resetear animación
+    setTimeout(() => {
+        clearFiltersBtn.style.animation = 'none';
+    }, 600);
 });
+
+// Agregar animación de botón si no existe
+if (!document.getElementById('button-animations')) {
+    const style = document.createElement('style');
+    style.id = 'button-animations';
+    style.textContent = `
+        @keyframes buttonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 // ========== 8. BOTONES DE PRODUCTO ==========
 const exploreBtns = document.querySelectorAll('.btn-explore');

@@ -49,12 +49,39 @@
     font-size: var(--p-typescale-xs);
     font-weight: var(--p-font-weight-semibold);
     cursor: pointer;
-    transition: background-color var(--p-duration-md) ease;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow;
+}
+
+.clear-filters-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width var(--p-duration-md) var(--p-ease-out-quart),
+                height var(--p-duration-md) var(--p-ease-out-quart);
 }
 
 .clear-filters-btn:hover {
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.clear-filters-btn:active {
+    transform: translateY(0);
+}
+
+.clear-filters-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 /* ========== WRAPPER FLEX: SIDEBAR + GRID ========== */
@@ -77,7 +104,9 @@
     max-height: calc(100vh - 150px);
     overflow-y: auto;
     padding-right: var(--p-spacing-static-md);
-    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: background-color var(--p-duration-lg) var(--p-ease-in-out),
+                transform var(--p-duration-md) var(--p-ease-out-quad);
+    will-change: transform;
 }
 
 /* Scroll personalizado para el sidebar */
@@ -121,24 +150,39 @@
     cursor: pointer;
     padding: var(--p-spacing-static-sm) 0;
     text-align: left;
-    transition: color var(--p-duration-md) ease;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+    position: relative;
+    will-change: color, transform;
+}
+
+.filter-group-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--porsche-primary);
+    transition: width var(--p-duration-md) var(--p-ease-out-quart);
 }
 
 .filter-group-btn:hover {
     color: var(--p-color-info);
+    transform: translateX(4px);
+}
+
+.filter-group-btn:hover::after {
+    width: 100%;
 }
 
 .filter-toggle-icon {
     font-size: 1.2em;
-    transition: transform var(--p-duration-md) ease;
-}
-
-.filter-group-btn[aria-expanded="false"] .filter-toggle-icon {
-    transform: rotate(0deg);
+    transition: transform var(--p-duration-md) var(--p-ease-elastic);
+    transform-origin: center;
 }
 
 .filter-group-btn[aria-expanded="true"] .filter-toggle-icon {
-    transform: rotate(0deg);
+    transform: rotate(90deg) scale(1.1);
 }
 
 /* ========== OPCIONES DE FILTRO ========== */
@@ -149,18 +193,20 @@
     display: flex;
     flex-direction: column;
     gap: var(--p-spacing-static-sm);
-    animation: slideDown var(--p-duration-md) ease forwards;
+    animation: slideDownPro var(--p-duration-lg) var(--p-ease-out-cubic) forwards;
 }
 
-@keyframes slideDown {
+@keyframes slideDownPro {
     from {
         opacity: 0;
         max-height: 0;
+        transform: translateY(-12px);
         overflow: hidden;
     }
     to {
         opacity: 1;
         max-height: 500px;
+        transform: translateY(0);
         overflow: visible;
     }
 }
@@ -172,12 +218,16 @@
     font-size: var(--p-typescale-xs);
     color: var(--porsche-text-muted);
     cursor: pointer;
-    transition: color var(--p-duration-md) ease;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
     user-select: none;
+    padding: 6px 0;
+    position: relative;
+    padding-left: 24px;
 }
 
 .filter-options label:hover {
     color: var(--porsche-text);
+    transform: translateX(4px);
 }
 
 .filter-options input[type="checkbox"] {
@@ -185,13 +235,24 @@
     height: 18px;
     cursor: pointer;
     accent-color: var(--porsche-primary);
-    border: 1px solid var(--porsche-border);
+    border: 2px solid var(--porsche-border);
     border-radius: var(--p-radius-sm);
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filter-options input[type="checkbox"]:hover {
+    border-color: var(--porsche-primary);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .filter-options input[type="checkbox"]:checked {
     background-color: var(--porsche-primary);
     border-color: var(--porsche-primary);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ========== GRID DE PRODUCTOS ========== */
@@ -207,15 +268,20 @@
     background-color: transparent;
     border-radius: var(--p-radius-lg);
     overflow: hidden;
-    transition: transform var(--p-duration-md) ease, box-shadow var(--p-duration-md) ease;
+    transition: all var(--p-duration-lg) var(--p-ease-out-cubic),
+                box-shadow var(--p-duration-lg) var(--p-ease-out-cubic);
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
+    perspective: 1000px;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--p-shadow-lg);
+    transform: translateY(-12px) rotateX(2deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
 /* ========== IMAGEN DEL PRODUCTO ========== */
@@ -226,17 +292,35 @@
     border-radius: var(--p-radius-lg);
     background-color: var(--porsche-gray-light);
     margin-bottom: var(--p-spacing-static-md);
+    position: relative;
+}
+
+.product-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--p-duration-md) var(--p-ease-in-out);
+}
+
+.product-card:hover .product-image::before {
+    opacity: 1;
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--p-duration-lg) ease;
+    transition: transform var(--p-duration-lg) var(--p-ease-out-cubic);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(1deg);
 }
 
 /* ========== INFORMACIÓN DEL PRODUCTO ========== */
@@ -289,6 +373,12 @@
     font-weight: var(--p-font-weight-bold);
     color: var(--porsche-text);
     letter-spacing: -0.01em;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+}
+
+.product-card:hover .product-price {
+    transform: scale(1.05);
+    color: var(--p-color-info);
 }
 
 /* ========== ACCIONES DEL PRODUCTO ========== */
@@ -297,6 +387,44 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--p-spacing-static-sm);
     margin-top: var(--p-spacing-static-md);
+}
+
+.product-actions button {
+    padding: var(--p-spacing-static-md) var(--p-spacing-static-sm);
+    border: 2px solid var(--porsche-primary);
+    background-color: transparent;
+    color: var(--porsche-text);
+    font-weight: var(--p-font-weight-semibold);
+    font-size: var(--p-typescale-xs);
+    border-radius: var(--p-radius-md);
+    cursor: pointer;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow;
+}
+
+.product-actions button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--porsche-primary);
+    transform: translateY(-50%);
+    transition: left var(--p-duration-md) var(--p-ease-out-quart);
+    z-index: -1;
+}
+
+.product-actions button:hover {
+    color: var(--porsche-secondary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.product-actions button:hover::before {
+    left: 0;
 }
 
 .btn-explore,
