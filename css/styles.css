@@ -1101,6 +1101,20 @@ body.dark-mode .sidebar-content {
     margin: 0 auto;
 }
 
+/* MODO OSCURO: Ajustar colores del footer */
+body.dark-mode .site-footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.dark-mode .footer-column a {
+    color: #ffffff;
+}
+
+body.dark-mode .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* ==========================================================================
    9. PÁGINA "NOSOTROS" (Historia, Misión, Visión, Compromiso)
    ========================================================================== */

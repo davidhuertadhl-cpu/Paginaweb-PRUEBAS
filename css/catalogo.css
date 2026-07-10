@@ -335,8 +335,11 @@
 body.dark-mode {
     --porsche-bg: #111111;
     --porsche-text: #ffffff;
+    --porsche-text-muted: #b0b0b0;
     --porsche-gray-light: #1a1a1a;
     --porsche-gray-dark: #f5f5f7;
+    --porsche-primary: #ffffff;
+    --porsche-secondary: #000000;
 }
 
 /* ========== RESPONSIVE ========== */
