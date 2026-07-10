@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos | Válvulas Ros</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+    <!-- ========== BARRA DE NAVEGACIÓN ========== -->
+    <nav class="porsche-navbar">
+        <div class="nav-left">
+            <button id="menu-open-btn" class="porsche-menu-btn" aria-label="Abrir menú">
+                <span class="menu-text">Menú</span>
+            </button>
+        </div>
+
+        <div class="nav-center">
+            <a href="index.html" class="porsche-main-logo">Valvulas Ros</a>
+        </div>
+
+        <div class="nav-right">
+            <button id="theme-toggle" class="porsche-btn-toggle" aria-label="Cambiar tema">
+                <img src="images/logo_simple.png" alt="" class="theme-icon">
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== MENÚ LATERAL DESPLEGABLE ========== -->
+    <div id="porsche-sidebar" class="porsche-sidebar-wrapper">
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <button id="menu-close-btn" class="porsche-close-btn" aria-label="Cerrar menú">&times;</button>
+            </div>
+            
+            <nav class="sidebar-navigation">
+                <ul class="sidebar-menu-list">
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="productos" aria-expanded="false" aria-controls="submenu-productos">
+                            <span class="menu-parent-text">PRODUCTOS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-productos">
+                            <li><a href="#" class="submenu-link">PVC</a></li>
+                            <li><a href="#" class="submenu-link">Acero al Carbón</a></li>
+                            <li><a href="#" class="submenu-link">Acero Inoxidable</a></li>
+                            <li><a href="#" class="submenu-link">Cobre</a></li>
+                            <li><a href="#" class="submenu-link">Galvanizado</a></li>
+                            <li><a href="#" class="submenu-link">Bridas</a></li>
+                            <li><a href="#" class="submenu-link">Válvulas</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="empresa" aria-expanded="false" aria-controls="submenu-empresa">
+                            <span class="menu-parent-text">EMPRESA</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-empresa">
+                            <li><a href="nosotros.html" class="submenu-link">Quiénes Somos</a></li>
+                            <li><a href="index.html" class="submenu-link">Inicio</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="catalog-main">
+        <!-- ========== ENCABEZADO ========== -->
+        <section class="catalog-header">
+            <h1 class="catalog-title">Catálogo de Productos</h1>
+            <p class="catalog-subtitle">Configura el producto que necesitas</p>
+            
+            <!-- Botón para limpiar filtros -->
+            <button id="clear-filters-btn" class="clear-filters-btn">
+                <span>Eliminar filtros</span>
+            </button>
+        </section>
+
+        <!-- ========== CONTENEDOR FLEX: SIDEBAR + GRID ========== -->
+        <div class="catalog-wrapper">
+            
+            <!-- SIDEBAR DE FILTROS -->
+            <aside class="filters-sidebar">
+                
+                <!-- GRUPO DE FILTRO 1: MATERIAL -->
+                <div class="filter-group">
+                    <button class="filter-group-btn" data-filter="material" aria-expanded="true">
+                        <span class="filter-group-title">Material</span>
+                        <span class="filter-toggle-icon">−</span>
+                    </button>
+                    <ul class="filter-options" id="filter-material">
+                        <li><label><input type="checkbox" name="material" value="pvc"> PVC (8)</label></li>
+                        <li><label><input type="checkbox" name="material" value="acero-carbon"> Acero al Carbón (12)</label></li>
+                        <li><label><input type="checkbox" name="material" value="acero-inoxidable"> Acero Inoxidable (15)</label></li>
+                        <li><label><input type="checkbox" name="material" value="cobre"> Cobre (6)</label></li>
+                        <li><label><input type="checkbox" name="material" value="galvanizado"> Galvanizado (10)</label></li>
+                    </ul>
+                </div>
+
+                <!-- GRUPO DE FILTRO 2: TIPO -->
+                <div class="filter-group">
+                    <button class="filter-group-btn" data-filter="tipo" aria-expanded="true">
+                        <span class="filter-group-title">Tipo</span>
+                        <span class="filter-toggle-icon">−</span>
+                    </button>
+                    <ul class="filter-options" id="filter-tipo">
+                        <li><label><input type="checkbox" name="tipo" value="conexion"> Conexión (22)</label></li>
+                        <li><label><input type="checkbox" name="tipo" value="valvula"> Válvula (18)</label></li>
+                        <li><label><input type="checkbox" name="tipo" value="brida"> Brida (12)</label></li>
+                        <li><label><input type="checkbox" name="tipo" value="accesorio"> Accesorio (8)</label></li>
+                    </ul>
+                </div>
+
+                <!-- GRUPO DE FILTRO 3: TAMAÑO -->
+                <div class="filter-group">
+                    <button class="filter-group-btn" data-filter="tamaño" aria-expanded="true">
+                        <span class="filter-group-title">Tamaño / Diámetro</span>
+                        <span class="filter-toggle-icon">−</span>
+                    </button>
+                    <ul class="filter-options" id="filter-tamaño">
+                        <li><label><input type="checkbox" name="tamaño" value="1-2"> 1/2" (10)</label></li>
+                        <li><label><input type="checkbox" name="tamaño" value="3-4"> 3/4" (12)</label></li>
+                        <li><label><input type="checkbox" name="tamaño" value="1"> 1" (15)</label></li>
+                        <li><label><input type="checkbox" name="tamaño" value="1-1-2"> 1 1/2" (8)</label></li>
+                        <li><label><input type="checkbox" name="tamaño" value="2"> 2" (14)</label></li>
+                    </ul>
+                </div>
+
+                <!-- GRUPO DE FILTRO 4: PRESIÓN NOMINAL -->
+                <div class="filter-group">
+                    <button class="filter-group-btn" data-filter="presion" aria-expanded="false">
+                        <span class="filter-group-title">Presión Nominal</span>
+                        <span class="filter-toggle-icon">+</span>
+                    </button>
+                    <ul class="filter-options" id="filter-presion" style="display: none;">
+                        <li><label><input type="checkbox" name="presion" value="50"> 50 PSI (5)</label></li>
+                        <li><label><input type="checkbox" name="presion" value="100"> 100 PSI (12)</label></li>
+                        <li><label><input type="checkbox" name="presion" value="150"> 150 PSI (18)</label></li>
+                        <li><label><input type="checkbox" name="presion" value="200"> 200 PSI (8)</label></li>
+                        <li><label><input type="checkbox" name="presion" value="250"> 250 PSI (6)</label></li>
+                    </ul>
+                </div>
+
+            </aside>
+
+            <!-- GRID DE PRODUCTOS -->
+            <section class="products-grid">
+                
+                <!-- TARJETA DE PRODUCTO 1 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Conexión PVC 1/2">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Conexión PVC</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">1/2"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">PVC</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">150 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 45.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TARJETA DE PRODUCTO 2 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Conexión PVC 3/4">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Conexión PVC</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">3/4"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">PVC</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">150 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 52.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TARJETA DE PRODUCTO 3 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Conexión Acero Inoxidable 1">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Conexión Acero Inoxidable</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">1"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">Acero Inox</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">200 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 125.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TARJETA DE PRODUCTO 4 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Conexión Acero Inoxidable 1 1/2">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Conexión Acero Inoxidable</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">1 1/2"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">Acero Inox</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">200 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 145.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TARJETA DE PRODUCTO 5 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Válvula de Compuerta 1">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Válvula de Compuerta</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">1"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">Acero Carbón</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">150 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 89.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TARJETA DE PRODUCTO 6 -->
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="images/conexiones2.jpg" alt="Brida de Acoplamiento 2">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Brida de Acoplamiento</h3>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Tamaño:</span>
+                                <span class="spec-value">2"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Material:</span>
+                                <span class="spec-value">Acero Inox</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Presión:</span>
+                                <span class="spec-value">250 PSI</span>
+                            </div>
+                        </div>
+
+                        <div class="product-price">
+                            MXN $ 198.00
+                        </div>
+
+                        <div class="product-actions">
+                            <button class="btn-explore">Explorar en detalle</button>
+                            <button class="btn-configure">Configurar</button>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <p class="footer-logo">VÁLVULAS ROS</p>
+                <p class="footer-tagline">Soluciones industriales en tuberías, válvulas y conexiones.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:ventas@valvulasros.com">ventas@valvulasros.com</a></li>
+                    <li><a href="tel:+525555550198">(55) 5555-0198</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="footer-year"></span> Válvulas Ros. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/main.js"></script>
+    <script src="js/catalogo.js"></script>
+
+</body>
+</html>

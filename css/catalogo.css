@@ -1,0 +1,420 @@
+/* ==========================================================================
+   ESTILOS DEL CATÁLOGO DE PRODUCTOS
+   Inspired by Porsche Design System
+   ========================================================================== */
+
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.catalog-main {
+    padding: calc(100px + var(--p-spacing-static-lg)) var(--p-spacing-static-md);
+    min-height: 100vh;
+    background-color: var(--porsche-bg);
+    color: var(--porsche-text);
+}
+
+/* ========== ENCABEZADO DEL CATÁLOGO ========== */
+.catalog-header {
+    max-width: 1400px;
+    margin: 0 auto var(--p-spacing-static-2xl);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: var(--p-spacing-static-lg);
+    flex-wrap: wrap;
+}
+
+.catalog-title {
+    font-size: var(--p-typescale-2xl);
+    font-weight: var(--p-font-weight-bold);
+    letter-spacing: -0.02em;
+    margin: 0;
+    flex: 1;
+    min-width: 300px;
+}
+
+.catalog-subtitle {
+    font-size: var(--p-typescale-md);
+    color: var(--porsche-text-muted);
+    margin: 0;
+    font-weight: var(--p-font-weight-normal);
+    min-width: 300px;
+    flex: 1;
+}
+
+.clear-filters-btn {
+    padding: var(--p-spacing-static-sm) var(--p-spacing-static-md);
+    background-color: var(--porsche-primary);
+    color: var(--porsche-secondary);
+    border: none;
+    border-radius: var(--p-radius-md);
+    font-size: var(--p-typescale-xs);
+    font-weight: var(--p-font-weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--p-duration-md) ease;
+    white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+    opacity: 0.8;
+}
+
+/* ========== WRAPPER FLEX: SIDEBAR + GRID ========== */
+.catalog-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--p-spacing-static-2xl);
+    align-items: start;
+}
+
+/* ========== SIDEBAR DE FILTROS ========== */
+.filters-sidebar {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-spacing-static-lg);
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding-right: var(--p-spacing-static-md);
+}
+
+/* Scroll personalizado para el sidebar */
+.filters-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filters-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filters-sidebar::-webkit-scrollbar-thumb {
+    background: var(--porsche-text-muted);
+    border-radius: var(--p-radius-full);
+}
+
+.filters-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--porsche-text);
+}
+
+/* ========== GRUPO DE FILTRO ========== */
+.filter-group {
+    border-bottom: 1px solid var(--porsche-border);
+    padding-bottom: var(--p-spacing-static-md);
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+}
+
+.filter-group-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--porsche-text);
+    font-size: var(--p-typescale-sm);
+    font-weight: var(--p-font-weight-semibold);
+    cursor: pointer;
+    padding: var(--p-spacing-static-sm) 0;
+    text-align: left;
+    transition: color var(--p-duration-md) ease;
+}
+
+.filter-group-btn:hover {
+    color: var(--p-color-info);
+}
+
+.filter-toggle-icon {
+    font-size: 1.2em;
+    transition: transform var(--p-duration-md) ease;
+}
+
+.filter-group-btn[aria-expanded="false"] .filter-toggle-icon {
+    transform: rotate(0deg);
+}
+
+.filter-group-btn[aria-expanded="true"] .filter-toggle-icon {
+    transform: rotate(0deg);
+}
+
+/* ========== OPCIONES DE FILTRO ========== */
+.filter-options {
+    list-style: none;
+    padding: var(--p-spacing-static-md) 0 0 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-spacing-static-sm);
+    animation: slideDown var(--p-duration-md) ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        overflow: visible;
+    }
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: var(--p-spacing-static-sm);
+    font-size: var(--p-typescale-xs);
+    color: var(--porsche-text-muted);
+    cursor: pointer;
+    transition: color var(--p-duration-md) ease;
+    user-select: none;
+}
+
+.filter-options label:hover {
+    color: var(--porsche-text);
+}
+
+.filter-options input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--porsche-primary);
+    border: 1px solid var(--porsche-border);
+    border-radius: var(--p-radius-sm);
+}
+
+.filter-options input[type="checkbox"]:checked {
+    background-color: var(--porsche-primary);
+    border-color: var(--porsche-primary);
+}
+
+/* ========== GRID DE PRODUCTOS ========== */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--p-spacing-static-xl);
+    width: 100%;
+}
+
+/* ========== TARJETA DE PRODUCTO ========== */
+.product-card {
+    background-color: transparent;
+    border-radius: var(--p-radius-lg);
+    overflow: hidden;
+    transition: transform var(--p-duration-md) ease, box-shadow var(--p-duration-md) ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--p-shadow-lg);
+}
+
+/* ========== IMAGEN DEL PRODUCTO ========== */
+.product-image {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: var(--p-radius-lg);
+    background-color: var(--porsche-gray-light);
+    margin-bottom: var(--p-spacing-static-md);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--p-duration-lg) ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+/* ========== INFORMACIÓN DEL PRODUCTO ========== */
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-spacing-static-md);
+}
+
+.product-name {
+    font-size: var(--p-typescale-md);
+    font-weight: var(--p-font-weight-bold);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+/* ========== ESPECIFICACIONES DEL PRODUCTO ========== */
+.product-specs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-spacing-static-sm);
+    padding: var(--p-spacing-static-md);
+    background-color: var(--porsche-gray-light);
+    border-radius: var(--p-radius-md);
+    font-size: var(--p-typescale-xs);
+}
+
+.spec-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--p-spacing-static-sm);
+    align-items: center;
+}
+
+.spec-label {
+    color: var(--porsche-text-muted);
+    font-weight: var(--p-font-weight-semibold);
+}
+
+.spec-value {
+    color: var(--porsche-text);
+    font-weight: var(--p-font-weight-normal);
+}
+
+/* ========== PRECIO ========== */
+.product-price {
+    font-size: var(--p-typescale-lg);
+    font-weight: var(--p-font-weight-bold);
+    color: var(--porsche-text);
+    letter-spacing: -0.01em;
+}
+
+/* ========== ACCIONES DEL PRODUCTO ========== */
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--p-spacing-static-sm);
+    margin-top: var(--p-spacing-static-md);
+}
+
+.btn-explore,
+.btn-configure {
+    padding: var(--p-spacing-static-sm) var(--p-spacing-static-md);
+    border: none;
+    border-radius: var(--p-radius-md);
+    font-size: var(--p-typescale-xs);
+    font-weight: var(--p-font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--p-duration-md) ease;
+    white-space: nowrap;
+}
+
+.btn-explore {
+    background-color: var(--porsche-primary);
+    color: var(--porsche-secondary);
+}
+
+.btn-explore:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+.btn-configure {
+    background-color: transparent;
+    color: var(--porsche-text);
+    border: 1px solid var(--porsche-primary);
+}
+
+.btn-configure:hover {
+    background-color: var(--porsche-primary);
+    color: var(--porsche-secondary);
+}
+
+/* ========== MODO OSCURO ========== */
+body.dark-mode {
+    --porsche-bg: #111111;
+    --porsche-text: #ffffff;
+    --porsche-gray-light: #1a1a1a;
+    --porsche-gray-dark: #f5f5f7;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .catalog-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        position: static;
+        max-height: none;
+        gap: var(--p-spacing-static-md);
+        padding-right: 0;
+        margin-bottom: var(--p-spacing-static-2xl);
+    }
+
+    .filter-group {
+        padding-bottom: var(--p-spacing-static-md);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-main {
+        padding: calc(var(--porsche-navbar-height, 80px) + var(--p-spacing-static-md)) var(--p-spacing-static-sm);
+    }
+
+    .catalog-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--p-spacing-static-md);
+    }
+
+    .catalog-title {
+        font-size: var(--p-typescale-xl);
+    }
+
+    .filters-sidebar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--p-spacing-static-lg);
+    }
+
+    .product-card:hover {
+        transform: none;
+    }
+
+    .product-image {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-wrapper {
+        gap: var(--p-spacing-static-lg);
+    }
+
+    .filters-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-title {
+        font-size: var(--p-typescale-lg);
+    }
+}
