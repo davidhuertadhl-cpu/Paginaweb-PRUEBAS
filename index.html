@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento HTML -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Válvulas Ros | Tuberías, Válvulas y Conexiones Industriales</title>
+
+    <!-- SEO: descripción que aparece en resultados de búsqueda -->
+    <meta name="description" content="Válvulas Ros: proveedor de tuberías, válvulas, bridas y conexiones industriales en PVC, acero al carbón, acero inoxidable, cobre y galvanizado. Sucursales en Puebla, Querétaro, Guadalajara y CDMX.">
+    
+    <!-- Preconexiones a Google Fonts para mejorar velocidad de carga -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Importa la fuente Inter en varios pesos (300, 400, 600, 700) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Vinculación del archivo CSS principal con estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ========== BARRA DE NAVEGACIÓN FLOTANTE ========== -->
+    <!-- Contiene menú lateral, logo central y botón de tema oscuro -->
+    <nav class="porsche-navbar">
+        <!-- Sección izquierda: botón para abrir el menú lateral -->
+        <div class="nav-left">
+            <button id="menu-open-btn" class="porsche-menu-btn" aria-label="Abrir menú">
+                <span class="menu-text">Menú</span>
+            </button>
+        </div>
+
+        <!-- Sección central: logo/nombre de la empresa (enlaza siempre al inicio) -->
+        <div class="nav-center">
+            <a href="index.html" class="porsche-main-logo">Valvulas Ros</a>
+        </div>
+
+        <!-- Sección derecha: botón para cambiar entre tema claro/oscuro -->
+        <div class="nav-right">
+            <button id="theme-toggle" class="porsche-btn-toggle" aria-label="Cambiar tema">
+    <img src="images/logo_simple.png" alt="" class="theme-icon">
+</button>
+        </div>
+    </nav>
+
+    <!-- ========== MENÚ LATERAL DESPLEGABLE ========== -->
+    <!-- Se abre desde la izquierda, incluye categorías de modelos y servicios -->
+    <div id="porsche-sidebar" class="porsche-sidebar-wrapper">
+        <!-- Fondo oscuro semi-transparente detrás del menú -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+        
+        <!-- Contenedor principal del menú lateral -->
+        <div class="sidebar-content">
+            <!-- Encabezado con botón para cerrar el menú -->
+            <div class="sidebar-header">
+                <button id="menu-close-btn" class="porsche-close-btn" aria-label="Cerrar menú">&times;</button>
+            </div>
+            
+            <!-- Navegación con menú expandible minimalista -->
+            <nav class="sidebar-navigation">
+                <ul class="sidebar-menu-list">
+                    <!-- Menú Principal: PRODUCTOS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="productos" aria-expanded="false" aria-controls="submenu-productos">
+                            <span class="menu-parent-text">PRODUCTOS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-productos">
+                            <li><a href="#" class="submenu-link">PVC</a></li>
+                            <li><a href="#" class="submenu-link">Acero al Carbón</a></li>
+                            <li><a href="#" class="submenu-link">Acero Inoxidable</a></li>
+                            <li><a href="#" class="submenu-link">Cobre</a></li>
+                            <li><a href="#" class="submenu-link">Galvanizado</a></li>
+                            <li><a href="#" class="submenu-link">Bridas</a></li>
+                            <li><a href="#" class="submenu-link">Válvulas</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Menú Principal: SERVICIOS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="servicios" aria-expanded="false" aria-controls="submenu-servicios">
+                            <span class="menu-parent-text">SERVICIOS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-servicios">
+                            <li><a href="#" class="submenu-link">Cotización</a></li>                            
+                        </ul>
+                    </li>
+
+                    <!-- Menú Principal: MARCAS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="marcas" aria-expanded="false" aria-controls="submenu-marcas">
+                            <span class="menu-parent-text">MARCAS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-marcas">
+                            <li><a href="#" class="submenu-link">Válvulas Ros Premium</a></li>
+                            <li><a href="#" class="submenu-link">Tuberías Estándar</a></li>
+                            <li><a href="#" class="submenu-link">Conexiones Pro</a></li>
+                            <li><a href="#" class="submenu-link">Accesorios Industrial</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Menú Principal: EMPRESA -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="empresa" aria-expanded="false" aria-controls="submenu-empresa">
+                            <span class="menu-parent-text">EMPRESA</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-empresa">
+                            <li><a href="nosotros.html" class="submenu-link">Quiénes Somos</a></li>
+                            <li><a href="#" class="submenu-link">Contacto</a></li>
+                            <li><a href="#" class="submenu-link">Ubicaciones</a></li>
+                            <li><a href="#" class="submenu-link">Carrera</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ========== SECCIÓN HÉROE (FONDO CON VIDEO) ========== -->
+    <!-- Pantalla completa con video de fondo y contenido superpuesto -->
+    <main class="hero-section">
+        <!-- Video de fondo que se reproduce en bucle -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="videos/hero-video.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+        
+        <!-- Capa superpuesta con contenido y controles -->
+        <div class="hero-overlay">
+            <!-- Contenido principal: título y botón call-to-action -->
+            <div class="hero-content-left">
+                <h1 class="hero-title">Valvulas Ros.<br>Calidad industrial.</h1>
+                <!-- Es un <a>, no un <button>, porque navega a otra página real (nosotros.html) -->
+                <a href="nosotros.html" class="porsche-btn-secondary">Descubrir más</a>
+            </div>
+
+            <!-- Botón flotante para pausar/reproducir video -->
+            <button id="video-control-btn" class="porsche-video-toggle" aria-label="Pausar video">
+                <span class="pause-icon"></span>
+            </button>
+        </div>
+    </main>
+
+    <!-- ========== GRILLA DE TARJETAS (MATERIALES) ========== -->
+    <!-- Encabezado de sección: título y subtítulo -->
+    <section class="sucursales-header">
+        <h2 class="sucursales-title">Nuestros Materiales</h2>
+        <p class="sucursales-subtitle">Contamos con un robusto inventario multimetal y sintético para cualquier proyecto industrial.</p>
+    </section>
+
+    <!-- Grid responsivo con tarjetas de sucursales -->
+    <section class="porsche-grid-container">
+        <!-- Tarjeta 1: Conexiones -->
+        <article class="porsche-card" data-material="conexiones">
+            <!-- Contenedor de imagen -->
+            <div class="card-image-wrapper">
+                <img src="images/conexiones2.jpg" alt="Conexiones" class="card-image">
+            </div>
+            <!-- Contenedor con título y enlace superpuesto -->
+            <div class="card-overlay-content">
+                <h3 class="card-title">Conexiones.</h3>
+                <a href="#" class="card-link" aria-label="Ver detalles de Conexiones">
+                    <span class="circle-arrow">→</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- Tarjeta 2: Tuberías -->
+        <article class="porsche-card" data-material="tuberia">
+            <div class="card-image-wrapper">
+                <img src="images/Tuberia.jpg" alt="Tuberías" class="card-image">
+            </div>
+            <div class="card-overlay-content">
+                <h3 class="card-title">Tuberías.</h3>
+                <a href="#" class="card-link" aria-label="Ver detalles de Tuberías">
+                    <span class="circle-arrow">→</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- Tarjeta 3: Válvulas -->
+        <article class="porsche-card" data-material="valvulas">
+            <div class="card-image-wrapper">
+                <img src="images/valvulas.jpg" alt="Válvulas" class="card-image">
+            </div>
+            <div class="card-overlay-content">
+                <h3 class="card-title">Válvulas.</h3>
+                <a href="#" class="card-link" aria-label="Ver detalles de Válvulas">
+                    <span class="circle-arrow">→</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- Tarjeta 4: Bridas -->
+        <article class="porsche-card" data-material="bridas">
+            <div class="card-image-wrapper">
+                <img src="images/bridas.jpg" alt="Bridas" class="card-image">
+            </div>
+            <div class="card-overlay-content">
+                <h3 class="card-title">Bridas.</h3>
+                <a href="#" class="card-link" aria-label="Ver detalles de Bridas">
+                    <span class="circle-arrow">→</span>
+                </a>
+            </div>
+        </article>
+    </section>
+
+    <!-- ========== SECCIÓN DE SUCURSALES (2x2 GRID CON HOVER VIDEO) ========== -->
+    <!-- Cuadrícula de 4 tarjetas que muestran video en el hover de sucursales -->
+    <section class="journey-section">
+        <!-- Título principal de la sección -->
+        <h2 class="journey-title">Nuestras Sucursales en México.</h2>
+        
+        <!-- Grilla de 2x2 con tarjetas interactivas -->
+        <div class="journey-grid">
+            <!-- Tarjeta 1: Puebla -->
+            <article class="journey-card" data-sucursal="PUEBLA">
+                <!-- Imagen estática -->
+                <img src="images/VRP.png" alt="Puebla" class="journey-media journey-img">
+                <!-- Video que aparece en hover -->
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-in-the-city-at-night-42144-large.mp4" muted loop playsinline class="journey-media journey-vid"></video>
+                
+                <!-- Capa de contenido con degradado oscuro -->
+                <div class="journey-overlay">
+                    <h3 class="journey-model">Puebla</h3>
+                    <div class="journey-bottom">
+                        <div class="journey-text-content">
+                            <span class="journey-badge">UBICACIÓN</span>
+                            <p>Av. Industrial 1204, Puebla, Pue.</p>
+                        </div>
+                        <span class="circle-arrow-small">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tarjeta 2: Querétaro -->
+            <article class="journey-card" data-sucursal="QUERETARO">
+                <img src="images/VRQ.png" alt="Querétaro" class="journey-media journey-img">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-driving-a-car-on-a-mountain-road-42526-large.mp4" muted loop playsinline class="journey-media journey-vid"></video>
+                
+                <div class="journey-overlay">
+                    <h3 class="journey-model">Querétaro</h3>
+                    <div class="journey-bottom">
+                        <div class="journey-text-content">
+                            <span class="journey-badge">UBICACIÓN</span>
+                            <p>Blvd. Bernardo Quintana 850, Qro.</p>
+                        </div>
+                        <span class="circle-arrow-small">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tarjeta 3: Guadalajara -->
+            <article class="journey-card" data-sucursal="GUADALAJARA">
+                <img src="images/VRG.png" alt="Guadalajara" class="journey-media journey-img">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-car-driving-on-a-road-through-the-forest-27041-large.mp4" muted loop playsinline class="journey-media journey-vid"></video>
+                
+                <div class="journey-overlay">
+                    <h3 class="journey-model">Guadalajara</h3>
+                    <div class="journey-bottom">
+                        <div class="journey-text-content">
+                            <span class="journey-badge">UBICACIÓN</span>
+                            <p>Av. López Mateos Sur 2375, Jal.</p>
+                        </div>
+                        <span class="circle-arrow-small">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tarjeta 4: CDMX -->
+            <article class="journey-card" data-sucursal="CDMX">
+                <img src="images/VRM.png" alt="Ciudad de México" class="journey-media journey-img">
+                <video src="videos/bridas-preview.mp4" muted loop playsinline class="journey-media journey-vid"></video>
+                
+                <div class="journey-overlay">
+                    <h3 class="journey-model">CDMX</h3>
+                    <div class="journey-bottom">
+                        <div class="journey-text-content">
+                            <span class="journey-badge">UBICACIÓN</span>
+                            <p>Eje Central Lázaro Cárdenas 320</p>
+                        </div>
+                        <span class="circle-arrow-small">→</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ========== VISTA DE DETALLES (INICIALMENTE OCULTA) ========== -->
+    <!-- Se muestra cuando el usuario hace clic en una tarjeta de producto: diseño automotriz minimalista -->
+    <section id="porsche-details-view" class="porsche-details-container hidden">
+        <!-- Botón para volver al catálogo -->
+        <button id="back-btn" class="back-link">← Volver al catálogo</button>
+        
+        <!-- Contenedor principal: imagen + info (layout automotriz) -->
+        <div class="details-content">
+            <!-- Caja de imagen del producto seleccionado -->
+            <div class="details-image-box">
+                <img id="detail-img" src="" alt="Sucursal seleccionada">
+            </div>
+            
+            <!-- Información técnica y especificaciones -->
+            <div class="details-info">
+                <!-- Título del producto -->
+                <h2 id="detail-title">Nombre de la Sucursal</h2>
+                
+                <!-- Sección de localización: dirección + mapa -->
+                <div class="location-section">
+                    <h3>Ubicación</h3>
+                    <p id="detail-address" class="location-address">Dirección</p>
+                    <!-- Mapa embebido de Google Maps -->
+                    <iframe id="location-map" 
+                            class="location-map"
+                            src="" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ubicación de sucursal">
+                    </iframe>
+                </div>
+                
+                <hr class="porsche-divider">
+                
+                <!-- Información de contacto -->
+                <h3>Información de Contacto</h3>
+                <ul class="specs-list">
+                    <li><strong>Teléfono:</strong> <span id="spec-phone">-</span></li>
+                    <li><strong>Horario:</strong> <span id="spec-hours">-</span></li>
+                    <li><strong>Cobertura:</strong> <span id="spec-coverage">-</span></li>
+                </ul>
+                <button class="porsche-btn-primary button-margin-top">Solicitar cotización</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER (pie de página, compartido por todas las páginas) ========== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <!-- Marca y tagline -->
+            <div class="footer-brand">
+                <p class="footer-logo">VÁLVULAS ROS</p>
+                <p class="footer-tagline">Soluciones industriales en tuberías, válvulas y conexiones.</p>
+            </div>
+
+            <!-- Enlaces de navegación rápida -->
+            <div class="footer-column">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Datos de contacto general -->
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:ventas@valvulasros.com">ventas@valvulasros.com</a></li>
+                    <li><a href="tel:+525555550198">(55) 5555-0198</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Línea de copyright con año dinámico (ver main.js) -->
+        <div class="footer-bottom">
+            <p>&copy; <span id="footer-year"></span> Válvulas Ros. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!--
+        Scripts al final del body para no bloquear el renderizado de la página.
+        main.js: compartido por todas las páginas (navbar, sidebar, tema).
+        home.js: exclusivo de esta página (catálogo de sucursales, video hero).
+    -->
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+
+</body>
+</html>

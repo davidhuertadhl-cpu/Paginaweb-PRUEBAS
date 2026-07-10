@@ -1,0 +1,1279 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================================================== */
+
+/* Variables CSS personalizadas que definen los colores, espacios y transiciones
+   Cambian automáticamente en modo oscuro */
+:root {
+    /* ========== COLORES PORSCHE DESIGN SYSTEM ========== */
+    /* Colores principales: fondo y texto */
+    --porsche-bg: #ffffff;              /* Color de fondo en modo claro */
+    --porsche-text: #000000;            /* Color de texto en modo claro */
+    --porsche-primary: #000000;         /* Color primario (botones, bordes) */
+    --porsche-secondary: #ffffff;       /* Color secundario (acentos) */
+    
+    /* Colores grises para elementos secundarios */
+    --porsche-gray-light: #f5f5f7;      /* Gris muy claro para fondos */
+    --porsche-gray-dark: #111111;       /* Gris oscuro para énfasis */
+    --porsche-border: rgba(255, 255, 255, 0.15); /* Borde para tarjetas */
+    
+    /* Colores Semánticos - Porsche Design System */
+    --p-color-info: hsl(228 83.2% 51%); /* Azul informativo */
+    --p-color-success: hsl(115 77.5% 27.8%); /* Verde éxito */
+    --p-color-warning: hsl(28 97.7% 34.1%); /* Naranja advertencia */
+    --p-color-error: hsl(357 78% 41%); /* Rojo error */
+    
+    /* ========== TIPOGRAFÍA PORSCHE ========== */
+    /* Fuente oficial Porsche Next (fallback a Inter) */
+    --p-font-porsche-next: "Porsche Next", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --p-font-sans: var(--p-font-porsche-next);
+    --p-font-weight-normal: 400;
+    --p-font-weight-semibold: 600;
+    --p-font-weight-bold: 700;
+    
+    /* Escala de tipografía responsiva - Porsche Design System */
+    --p-typescale-2xs: 0.75rem;         /* 12px */
+    --p-typescale-xs: 0.875rem;         /* 14px */
+    --p-typescale-sm: 1rem;             /* 16px */
+    --p-typescale-md: clamp(1.13rem, 0.21vw + 1.08rem, 1.33rem);
+    --p-typescale-lg: clamp(1.27rem, 0.51vw + 1.16rem, 1.78rem);
+    --p-typescale-xl: clamp(1.42rem, 0.94vw + 1.23rem, 2.37rem);
+    --p-typescale-2xl: clamp(1.6rem, 1.56vw + 1.29rem, 3.16rem);
+    
+    /* ========== ESPACIADO PORSCHE (FLUIDO Y ESTÁTICO) ========== */
+    /* Espaciado fluido - se adapta al tamaño de pantalla */
+    --p-spacing-fluid-xs: clamp(4px, 0.25vw + 3px, 8px);
+    --p-spacing-fluid-sm: clamp(8px, 0.5vw + 6px, 16px);
+    --p-spacing-fluid-md: clamp(16px, 1.25vw + 12px, 36px);
+    --p-spacing-fluid-lg: clamp(32px, 2.75vw + 23px, 76px);
+    --p-spacing-fluid-xl: clamp(48px, 3vw + 38px, 96px);
+    
+    /* Espaciado estático - tamaños fijos */
+    --p-spacing-static-2xs: 1px;
+    --p-spacing-static-xs: 4px;
+    --p-spacing-static-sm: 8px;
+    --p-spacing-static-md: 16px;
+    --p-spacing-static-lg: 32px;
+    --p-spacing-static-xl: 48px;
+    --p-spacing-static-2xl: 80px;
+    
+    /* Compatibilidad - nombres anteriores */
+    --porsche-spacing-sm: var(--p-spacing-static-sm);
+    --porsche-spacing-md: var(--p-spacing-static-md);
+    --porsche-spacing-lg: var(--p-spacing-static-lg);
+    --porsche-spacing-xl: var(--p-spacing-static-xl);
+    
+    /* ========== BORDER RADIUS PORSCHE ========== */
+    --p-radius-xs: 2px;
+    --p-radius-sm: 4px;
+    --p-radius-md: 6px;
+    --p-radius-lg: 8px;
+    --p-radius-xl: 12px;
+    --p-radius-2xl: 16px;
+    --p-radius-3xl: 24px;
+    --p-radius-4xl: 32px;
+    --p-radius-full: 9999px;            /* Más compatible que calc(infinity * 1px) */
+
+    /* ========== GRISES DE TEXTO SECUNDARIO ========== */
+    --porsche-text-muted: #888888;      /* Gris usado en precios, categorías, etc. */
+
+    /* ========== ESCALA DE Z-INDEX (evita magic numbers dispersos) ========== */
+    --z-navbar: 100;
+    --z-sidebar-overlay: 199;
+    --z-sidebar: 200;
+    --z-sidebar-content: 201;
+    
+    /* ========== EFECTOS VISUALES PORSCHE ========== */
+    /* Blur para efecto frosted glass */
+    --p-blur-frosted: blur(32px);
+    
+    /* Sombras Porsche Design System */
+    --p-shadow-sm: 0px 3px 8px rgba(0, 0, 0, 0.16);
+    --p-shadow-md: 0px 4px 16px rgba(0, 0, 0, 0.16);
+    --p-shadow-lg: 0px 8px 40px rgba(0, 0, 0, 0.16);
+    
+    /* ========== MOTION / ANIMACIONES PORSCHE ========== */
+    /* Duraciones estándar */
+    --p-duration-sm: 0.25s;
+    --p-duration-md: 0.4s;
+    --p-duration-lg: 0.6s;
+    --p-duration-xl: 1.2s;
+    
+    /* Easing functions profesionales */
+    --p-ease-in-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --p-ease-in: cubic-bezier(0, 0, 0.2, 1);
+    --p-ease-out: cubic-bezier(0.4, 0, 0.5, 1);
+    
+    /* Transición personalizada */
+    --porsche-transition: all var(--p-duration-md) var(--p-ease-in-out);
+}
+
+/* Modo oscuro: invierte colores cuando la clase dark-mode está activa en body */
+body.dark-mode {
+    --porsche-bg: #000000;              /* Fondo oscuro */
+    --porsche-text: #ffffff;            /* Texto blanco */
+    --porsche-primary: #ffffff;         /* Primario blanco */
+    --porsche-secondary: #000000;       /* Secundario negro */
+    --porsche-gray-light: #111111;      /* Grises invertidos */
+    --porsche-gray-dark: #f5f5f7;
+    --porsche-border: rgba(255, 255, 255, 0.2); /* Borde más visible en oscuro */
+    
+    /* Colores Semánticos en Modo Oscuro */
+    --p-color-info: hsl(210 100% 54.5%); /* Azul más claro */
+    --p-color-success: hsl(157 84.9% 41.6%); /* Verde más claro */
+    --p-color-warning: hsl(28 90.2% 56.1%); /* Naranja más claro */
+    --p-color-error: hsl(0 96.9% 62%); /* Rojo más claro */
+}
+
+/* Reset global: elimina márgenes y padding por defecto */
+* {
+    box-sizing: border-box;             /* Incluye padding y border en el tamaño */
+    margin: 0;                          /* Sin margen externo */
+    padding: 0;                         /* Sin margen interno */
+}
+
+/* Estilos generales del body */
+body {
+    font-family: var(--p-font-sans); /* Usa Porsche Next */
+    font-weight: var(--p-font-weight-normal);
+    background-color: var(--porsche-bg); /* Fondo que cambia con tema */
+    color: var(--porsche-text);         /* Texto que cambia con tema */
+    transition: background-color var(--p-duration-md) var(--p-ease-in-out), 
+                color var(--p-duration-md) var(--p-ease-in-out); /* Transición Porsche */
+    word-wrap: break-word;              /* Ajusta palabras largas */
+    word-break: break-word;             /* Quiebra palabras si es necesario */
+    overflow-x: auto;                   /* Permite scroll si es absolutamente necesario */
+}
+
+/* Clase auxiliar para ocultar elementos */
+.hidden {
+    display: none !important;           /* Oculta cualquier elemento */
+}
+
+/* Los botones no heredan la tipografía por defecto del navegador: la forzamos */
+button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* Estado de foco visible y consistente para navegación por teclado (accesibilidad) */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--p-color-info);
+    outline-offset: 2px;
+    border-radius: var(--p-radius-xs);
+}
+
+/* Reset universal: box-sizing y propiedades base para mejor zoom scaling */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;             /* Incluye padding/border en width/height */
+    margin: 0;
+    padding: 0;
+}
+
+/* Respeta la preferencia del usuario de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   2. NAVBAR PREMIUM FLOTANTE
+   ========================================================================== */
+
+/* Barra de navegación: siempre visible en la parte superior */
+.porsche-navbar {
+    position: fixed;                    /* Se queda fija aunque se haga scroll */
+    top: 0;                             /* En el tope de la pantalla */
+    left: 0;
+    width: 100%;                        /* Ancho completo */
+    min-height: clamp(60px, 10vw, 80px); /* Alto fluido con límites */
+    display: flex;                      /* Distribución horizontal */
+    justify-content: space-between;     /* Espacio entre secciones izq/der */
+    align-items: center;                /* Centrado vertical */
+    padding: clamp(0.5rem, 2vw, 1rem) var(--porsche-spacing-lg); /* Padding fluido */
+    /* Efecto glassmorphism: fondo semi-transparente + blur */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);        /* Efecto de vidrio borroso */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    z-index: var(--z-navbar);           /* Por encima de otros elementos */
+    transition: background-color var(--p-duration-md) var(--p-ease-in-out);
+}
+
+/* Secciones de la navbar: izquierda y derecha */
+.nav-left, .nav-right {
+    flex: 1;                            /* Ancho igual para ambas */
+    display: flex;                      /* Contenedor flex */
+    align-items: center;                /* Centrado vertical */
+}
+
+/* Sección central: logo */
+.nav-center {
+    flex: 2;                            /* Doble ancho que izq/der */
+    display: flex;
+    justify-content: center;            /* Centrado horizontal */
+}
+
+/* Botón de menú en la navbar */
+.porsche-menu-btn {
+    background: none;                   /* Sin fondo */
+    border: none;                       /* Sin borde */
+    color: #ffffff;                     /* Texto blanco */
+    font-size: 0.95rem;                 /* Tamaño de fuente pequeño */
+    font-weight: 600;                   /* Más grueso */
+    cursor: pointer;                    /* Cursor clickeable */
+    display: flex;                      /* Alineación interna */
+    align-items: center;
+    gap: 8px;                           /* Espacio entre ícono y texto */
+}
+
+/* Ícono de hamburguesa antes del texto */
+.porsche-menu-btn::before {
+    content: "≡";                       /* Ícono de menú */
+    font-size: 1.4rem;                  /* Más grande que el texto */
+}
+
+/* Logo principal de la empresa (es un <a> que enlaza al inicio, por eso quita el subrayado) */
+.porsche-main-logo {
+    color: #ffffff;                     /* Blanco */
+    text-decoration: none;              /* Quita el subrayado propio de los enlaces */
+    font-weight: 700;                   /* Muy grueso */
+    font-size: 1.5rem;                  /* Tamaño grande */
+    letter-spacing: 6px;                /* Espaciado amplio entre letras */
+}
+
+/* Botón para cambiar entre tema claro/oscuro */
+.porsche-btn-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;                  /* tamaño del emoji */
+    cursor: pointer;
+    color: #ffffff;
+    margin-left: auto;
+}
+
+.theme-icon {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+/* ==========================================================================
+   3. SIDEBAR MENÚ (Menú lateral deslizable)
+   ========================================================================== */
+
+/* Contenedor wrapper del sidebar */
+.porsche-sidebar-wrapper {
+    position: fixed;                    /* Cubre toda la pantalla */
+    top: 0;
+    left: 0;                            /* Siempre en pantalla */
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-sidebar);          /* Por encima de la navbar */
+    pointer-events: none;               /* No interfiere si está inactivo */
+}
+
+/* Cuando está activo, activa el overlay y el contenido */
+.porsche-sidebar-wrapper.active {
+    pointer-events: auto;               /* Interactivo cuando está abierto */
+}
+
+/* Fondo oscuro semi-transparente detrás del menú con efecto glassmorphism */
+.sidebar-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);      /* Transparente inicialmente */
+    backdrop-filter: blur(0px);         /* Sin blur inicialmente */
+    transition: background-color var(--p-duration-md) var(--p-ease-in-out),
+                backdrop-filter var(--p-duration-md) var(--p-ease-in-out); /* Transición suave */
+}
+
+/* Overlay activo: oscurece y aplica blur */
+.porsche-sidebar-wrapper.active .sidebar-overlay {
+    background: rgba(0, 0, 0, 0.75);    /* Oscuridad más profunda en ambos temas */
+    backdrop-filter: blur(10px);        /* Blur pronunciado */
+}
+
+/* Contenido principal del sidebar con fondo blanco fijo */
+.sidebar-content {
+    position: absolute;
+    top: 0;
+    left: -100%;                        /* Fuera inicialmente */
+    width: clamp(280px, 350px, 90vw);   /* Ancho fluido con límites */
+    max-width: 350px;                   /* Máximo para que no sea demasiado grande */
+    height: 100%;
+    /* Fondo blanco fijo sin glasmorphism */
+    background: #ffffff;                /* Blanco sólido profesional */
+    border-right: 2px solid rgba(0, 0, 0, 0.1); /* Borde sutil */
+    padding: var(--porsche-spacing-lg); /* Espacio interno */
+    display: flex;
+    flex-direction: column;             /* Elementos apilados verticalmente */
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    z-index: var(--z-sidebar-content);  /* Por encima del overlay */
+    transition: left var(--p-duration-lg) var(--p-ease-in-out),
+                transform var(--p-duration-lg) var(--p-ease-in-out); /* Animación fluida */
+}
+
+/* Asegura que el sidebar no se expanda más allá de lo necesario */
+.sidebar-content {
+    max-width: 350px;                   /* Máximo ancho también */
+    min-width: 280px;                   /* Mínimo ancho para usabilidad */
+}
+
+/* En modo oscuro: mantiene el mismo blanco fijo */
+body.dark-mode .sidebar-content {
+    background: #ffffff;                /* Blanco siempre */
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Cuando el sidebar está activo, desliza el contenido */
+.porsche-sidebar-wrapper.active .sidebar-content {
+    left: 0;                            /* Entra completamente */
+    transform: translateX(0);           /* Sin desplazamiento */
+}
+
+/* Encabezado del sidebar con botón de cerrar */
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;          /* Botón a la derecha */
+    margin-bottom: var(--porsche-spacing-lg);
+    padding-bottom: var(--porsche-spacing-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separación sutil */
+    flex-shrink: 0;                     /* No se encoge con zoom */
+}
+
+/* Botón X para cerrar el menú */
+.porsche-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;                    /* Ícono grande */
+    color: #000000;                     /* Texto negro fijo */
+    cursor: pointer;
+}
+
+/* Lista del menú: sin estilos de lista por defecto */
+.sidebar-menu-list {
+    list-style: none;                   /* Elimina puntos */
+}
+
+/* Categorías de menú (Modelos, Servicios, etc.) */
+.menu-category {
+    font-size: 0.8rem;                  /* Muy pequeño */
+    text-transform: uppercase;          /* Todo mayúsculas */
+    letter-spacing: 2px;                /* Espaciado entre letras */
+    color: #000000;                     /* Negro fijo */
+    opacity: 0.6;                       /* Ligeramente transparente */
+    margin-bottom: var(--porsche-spacing-sm);
+}
+
+/* ===== MENÚ EXPANDIBLE CON SUBMENÚS ===== */
+
+/* Elemento padre del menú con submenú */
+.menu-item-parent {
+    display: flex;
+    flex-direction: column;             /* Botón encima, submenú debajo */
+    margin-bottom: var(--porsche-spacing-lg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Línea divisoria sutil negra */
+}
+
+/* Botón principal que abre/cierra submenú */
+.menu-parent-btn {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 14px 0;
+    color: #000000;                     /* Texto negro fijo */
+    font-size: 0.95rem;
+    font-weight: 700;                   /* Más grueso */
+    text-transform: uppercase;          /* Todo mayúsculas */
+    letter-spacing: 1px;                /* Espaciado entre letras */
+    text-align: left;                   /* Texto alineado izquierda */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;     /* Texto izq, flecha der */
+    align-items: center;
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+}
+
+/* Hover: destaca el botón principal */
+.menu-parent-btn:hover {
+    padding-left: 6px;
+    opacity: 0.7;
+}
+
+/* Flecha minimalista */
+.menu-arrow {
+    display: inline-block;
+    transition: transform var(--p-duration-md) var(--p-ease-in-out);
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.6;                       /* Visible pero sutíl */
+    color: #000000;                     /* Negra fija */
+}
+
+/* Flecha rotada cuando el menú está activo */
+.menu-parent-btn.active .menu-arrow {
+    transform: rotate(90deg);           /* Gira 90 grados */
+    opacity: 1;                         /* Más visible */
+}
+
+/* Submenú: lista de elementos anidados */
+.submenu {
+    list-style: none;
+    max-height: 0;                      /* Oculto inicialmente */
+    overflow: hidden;                   /* Recorta el contenido */
+    transition: max-height var(--p-duration-md) var(--p-ease-in-out), 
+                opacity var(--p-duration-md) var(--p-ease-in-out); /* Animación suave */
+    opacity: 0;                         /* Invisible */
+    padding: 0;
+}
+
+/* Submenú visible cuando el padre está activo */
+.menu-parent-btn.active ~ .submenu {
+    max-height: 600px;                  /* Altura máxima para expandir */
+    opacity: 1;                         /* Visible */
+    padding: 8px 0;                     /* Espaciado */
+}
+
+/* Enlaces dentro del submenú */
+.submenu-link {
+    display: block;
+    padding: 8px 0 8px 20px;            /* Indentado respecto al padre */
+    color: #000000;                     /* Texto negro fijo */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;                   /* Normal, no grueso */
+    opacity: 0.7;                       /* Más tenue */
+    transition: all var(--p-duration-md) var(--p-ease-in-out);
+    border-left: 2px solid transparent; /* Borde izquierdo invisible */
+}
+
+/* Hover: destaca el link del submenú */
+.submenu-link:hover {
+    opacity: 1;                         /* Totalmente visible */
+    padding-left: 26px;                 /* Más indentación */
+    border-left-color: #000000;         /* Borde negro fijo */
+}
+
+/* Enlaces del menú */
+.sidebar-menu-list li a {
+    display: block;                     /* Ocupa todo el espacio */
+    padding: 12px 0;                    /* Espacio arriba/abajo */
+    color: #000000;                     /* Texto negro fijo */
+    text-decoration: none;              /* Sin subrayado */
+    font-size: 1.05rem;
+    transition: padding-left 0.2s ease; /* Animación al hover */
+}
+
+/* Efecto hover: mueve el texto a la derecha */
+.sidebar-menu-list li a:hover {
+    padding-left: 8px;                  /* Indentación hacia la derecha */
+    font-weight: 600;                   /* Más grueso */
+}
+
+/* ==========================================================================
+   4. HERO SECCIÓN (Fondo de video pantalla completa)
+   ========================================================================== */
+
+/* Contenedor principal de la sección héroe */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;                      /* Altura = altura de la ventana */
+    background-color: #000;             /* Negro si falla el video */
+    overflow: hidden;                   /* Recorta el contenido sobrante */
+}
+
+/* Video de fondo: centrado y escalado */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                  /* Cubre todo sin deformarse */
+    transform: translate(-50%, -50%);   /* Centra el video */
+    z-index: 1;                         /* Debajo del contenido */
+}
+
+/* Overlay: capa con degradado oscuro para legibilidad */
+.hero-overlay {
+    position: absolute;
+    inset: 0;                           /* Cubre todo */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 40%); /* Oscuro abajo */
+    display: flex;
+    justify-content: space-between;     /* Contenido a la izquierda, botón a la derecha */
+    align-items: flex-end;              /* Alineado al final */
+    padding: var(--porsche-spacing-xl);
+    z-index: 2;                         /* Encima del video */
+}
+
+/* Contenedor del título y botón */
+.hero-content-left {
+    color: #ffffff;
+    max-width: 500px;                   /* Ancho máximo */
+}
+
+/* Título principal del héroe */
+.hero-title {
+    font-size: clamp(2rem, 1.8vw + 1.6rem, 3.5rem); /* Escala fluida en vez de tamaño fijo */
+    font-weight: 600;                   /* Grueso */
+    line-height: 1.1;                   /* Espaciado entre líneas */
+    margin-bottom: var(--porsche-spacing-lg);
+}
+
+/* Botón secundario (con transparencia) */
+/* Se usa tanto en <button> como en <a> (p.ej. el CTA "Descubrir más" que
+   navega a nosotros.html), por eso incluye reglas típicas de enlace */
+.porsche-btn-secondary {
+    display: inline-block;              /* Necesario para que el padding funcione igual en <a> */
+    background-color: rgba(255, 255, 255, 0.15); /* Blanco muy transparente */
+    color: #ffffff;
+    text-decoration: none;              /* Quita el subrayado si es un <a> */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+    padding: 12px 28px;                 /* Espaciado interno */
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);         /* Efecto vidrio esmerilado */
+    transition: var(--porsche-transition);
+}
+
+/* Hover: fondo blanco sólido */
+.porsche-btn-secondary:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Botón de pausa/reproducción del video */
+.porsche-video-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: clamp(40px, 8vw, 60px);      /* Escala fluida con zoom */
+    height: clamp(40px, 8vw, 60px);     /* Escala fluida con zoom */
+    aspect-ratio: 1;                    /* Mantiene forma cuadrada */
+    border-radius: 50%;                 /* Forma circular */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    flex-shrink: 0;                     /* No se encoge con zoom */
+}
+
+/* Ícono de pausa (dos barras verticales) */
+.porsche-video-toggle .pause-icon {
+    display: flex;
+    gap: 4px;                           /* Espacio entre barras */
+}
+
+/* Barras del ícono de pausa */
+.porsche-video-toggle .pause-icon::before,
+.porsche-video-toggle .pause-icon::after {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 14px;
+    background-color: #ffffff;
+}
+
+/* Transforma el ícono de pausa a play cuando está pausado */
+.porsche-video-toggle.paused .pause-icon::before {
+    transform: translateX(4px) rotate(45deg) scaleY(0.7); /* Rota hacia play */
+}
+.porsche-video-toggle.paused .pause-icon::after {
+    transform: translateX(-2px) rotate(-45deg) scaleY(0.7);
+}
+
+/* ==========================================================================
+   5. ENCABEZADO DE SUCURSALES (Sección de título antes del grid)
+   ========================================================================== */
+
+/* Contenedor del encabezado de sucursales */
+.sucursales-header {
+    text-align: center;
+    padding: 4rem var(--porsche-spacing-lg) 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Título de la sección de sucursales */
+.sucursales-title {
+    font-size: clamp(2.2rem, 3vw + 1.5rem, 2.8rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+    color: var(--porsche-text);
+}
+
+/* Subtítulo de la sección de sucursales */
+.sucursales-subtitle {
+    font-size: 1.15rem;
+    opacity: 0.65;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+
+/* Contenedor principal de la grilla: 2 columnas grandes para diseño premium */
+.porsche-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 350px, 50vw), 1fr)); /* Escala con zoom */
+    gap: var(--porsche-spacing-lg);     /* Más espacio entre tarjetas */
+    padding: var(--porsche-spacing-xl) var(--porsche-spacing-lg);
+    max-width: 90vw;                    /* Máximo 90% del ancho de pantalla */
+    margin: 0 auto;                     /* Centrado */
+    width: 100%;                        /* Ocupa todo lo disponible */
+}
+
+/* Tarjeta individual de producto: más grande para diseño premium */
+.porsche-card {
+    position: relative;
+    background-color: #000000;
+    border-radius: var(--p-radius-3xl); /* Usa Porsche radius 24px */
+    height: 400px;                      /* Aumentado para mejor presencia */
+    overflow: hidden;                   /* Recorta el contenido */
+    display: flex;
+    transition: var(--porsche-transition);
+    cursor: pointer;
+    border: 1px solid var(--porsche-border); /* Borde sutil elegante */
+    box-shadow: var(--p-shadow-lg);    /* Sombra más profunda para presencia */
+}
+
+/* Efecto hover: levanta la tarjeta y mejora sombra */
+.porsche-card:hover {
+    transform: translateY(-6px);        /* Sube 6 píxeles */
+    box-shadow: var(--p-shadow-lg);    /* Sombra más profunda en hover */
+}
+
+/* Contenedor de imagen */
+.card-image-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--p-radius-3xl); /* Applica border-radius 24px Porsche */
+    overflow: hidden;                   /* Recorta la imagen a los bordes redondeados */
+}
+
+/* Imagen de la tarjeta */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                  /* Cubre sin deformarse */
+    transition: var(--porsche-transition);
+    border-radius: var(--p-radius-3xl);
+}
+
+/* Zoom al imagen al hover */
+.porsche-card:hover .card-image {
+    transform: scale(1.04);             /* Amplía 4% */
+}
+
+/* Contenido superpuesto (título y flecha) */
+.card-overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%);
+    display: flex;
+    justify-content: space-between;     /* Contenido a la izquierda, flecha a la derecha */
+    align-items: flex-end;              /* Al final */
+    padding: var(--porsche-spacing-lg) var(--porsche-spacing-md);
+    z-index: 3;
+}
+
+/* Título dentro de la tarjeta */
+.card-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+/* Ícono circular con flecha */
+.circle-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 6vw, 48px);      /* Escala fluida */
+    height: clamp(36px, 6vw, 48px);     /* Escala fluida */
+    aspect-ratio: 1;                    /* Mantiene proporción cuadrada */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.25); /* Semi-transparente */
+    color: #ffffff;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem); /* Font-size fluido */
+    transition: var(--porsche-transition);
+}
+
+/* Hover: fonda blanco sólido */
+.porsche-card:hover .circle-arrow {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* ==========================================================================
+   6. SECCIÓN "VIAJE" (Grilla 2x2 con hover de video)
+   ========================================================================== */
+
+/* Contenedor de la sección */
+.journey-section {
+    padding: var(--porsche-spacing-xl) var(--porsche-spacing-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Título de la sección: más presencia y espaciado */
+.journey-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 300;                   /* Fino */
+    margin-bottom: 4rem;                /* Más espaciado */
+    margin-top: 2rem;
+    color: var(--porsche-text);
+    letter-spacing: -0.5px;             /* Tracking ajustado */
+}
+
+/* Grilla de 2x2: más espaciada y premium */
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: clamp(16px, 3vw, 32px);        /* Gap fluido con zoom */
+}
+
+/* En pantallas pequeñas: 1 columna */
+@media (max-width: 768px) {
+    .journey-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjeta de viaje */
+.journey-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;                /* Cuadrado perfecto */
+    cursor: pointer;
+}
+
+/* Imágenes y videos dentro */
+.journey-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out; /* Transición suave */
+}
+
+/* Video: invisible inicialmente */
+.journey-vid {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Video: visible en hover */
+.journey-card:hover .journey-vid {
+    opacity: 1;                         /* Aparece */
+}
+
+/* Capa de contenido */
+.journey-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;     /* Título arriba, detalles abajo */
+    padding: clamp(1.5rem, 4vw, 2.5rem); /* Padding fluido con zoom */
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 25%, transparent 65%, rgba(0,0,0,0.75) 100%);
+    color: #ffffff;
+}
+
+/* Nombre del modelo */
+.journey-model {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.2rem); /* Font-size fluido con zoom */
+    font-style: italic;                 /* Cursiva */
+    font-weight: 700;
+    letter-spacing: clamp(1px, 0.5vw, 3px); /* Letter-spacing fluido */
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Contenedor inferior con info y flecha */
+.journey-bottom {
+    display: flex;
+    justify-content: space-between;     /* Texto a la izquierda, flecha a la derecha */
+    align-items: flex-end;
+}
+
+/* Párrafo descriptivo */
+.journey-text-content p {
+    margin: 6px 0 0 0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    max-width: 300px;
+    opacity: 0.9;                       /* Ligeramente transparente */
+}
+
+/* Etiqueta (badge) con especificaciones */
+.journey-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+}
+
+/* Flecha en círculo (versión pequeña) */
+.circle-arrow-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(32px, 6vw, 40px);      /* Escala fluida */
+    height: clamp(32px, 6vw, 40px);     /* Escala fluida */
+    aspect-ratio: 1;                    /* Mantiene proporción */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem); /* Font-size fluido */
+    transition: var(--porsche-transition);
+}
+
+/* Hover: fondo blanco sólido */
+.journey-card:hover .circle-arrow-small {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* ==========================================================================
+   7. VISTA DE DETALLES (Panel de información del producto)
+   ========================================================================== */
+
+/* Contenedor principal de detalles */
+.porsche-details-container {
+    padding: var(--porsche-spacing-xl) var(--porsche-spacing-lg);
+    max-width: calc(100vw - 2rem);      /* Ocupa casi todo el ancho disponible */
+    margin: clamp(60px, 10vw, 90px) auto 0 auto; /* Margen fluido para navbar fija */
+    width: 100%;
+}
+
+/* Botón para volver atrás */
+.back-link {
+    background: none;
+    border: none;
+    color: var(--porsche-text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: var(--porsche-spacing-lg);
+}
+
+/* Grilla: imagen grande a la izquierda, info a la derecha */
+.details-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--porsche-spacing-xl);
+    align-items: center;
+}
+
+/* En móvil: una columna */
+@media (max-width: 900px) {
+    .details-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Caja de imagen */
+.details-image-box {
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: #000;
+    height: 450px;
+}
+
+/* Imagen dentro */
+.details-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Título del producto */
+.details-info h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: var(--porsche-spacing-sm);
+}
+
+/* Texto de precio/descripción */
+.detail-price-text {
+    font-size: 1.3rem;
+    color: var(--porsche-text-muted);
+    margin-bottom: var(--porsche-spacing-md);
+}
+
+/* Línea divisoria */
+.porsche-divider {
+    border: 0;
+    height: 1px;
+    background-color: rgba(128,128,128,0.2);
+    margin: var(--porsche-spacing-md) 0;
+}
+
+/* Títulos de secciones (ESPECIFICACIONES, etc.) */
+.details-info h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--porsche-spacing-md);
+}
+
+/* Lista de especificaciones */
+.specs-list {
+    list-style: none;
+}
+
+/* Item de especificación */
+.specs-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(128,128,128,0.1);
+    display: flex;
+    justify-content: space-between;     /* Clave a la izquierda, valor a la derecha */
+}
+
+/* Botón principal (compra) */
+.porsche-btn-primary {
+    background-color: var(--porsche-text); /* Color inverso al tema */
+    color: var(--porsche-bg);
+    border: 1px solid var(--porsche-text);
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;                        /* Ancho completo */
+    transition: var(--porsche-transition);
+}
+
+/* Hover: solo borde, sin fondo */
+.porsche-btn-primary:hover {
+    background-color: transparent;
+    color: var(--porsche-text);
+}
+
+/* Clase auxiliar para agregar margen superior a botones sin usar inline styles (regla #2) */
+.button-margin-top {
+    margin-top: var(--porsche-spacing-lg);  /* Usa variable Porsche en vez de valor fijo */
+}
+
+/* ========== SECCIÓN DE UBICACIÓN CON MAPA ========== */
+/* Contenedor de ubicación: dirección + mapa embebido */
+.location-section {
+    margin: var(--porsche-spacing-lg) 0;
+}
+
+/* Título de ubicación */
+.location-section h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--porsche-spacing-md);
+}
+
+/* Párrafo de dirección: legible y con buen espaciado */
+.location-address {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: var(--porsche-spacing-md);
+    color: var(--porsche-text);
+}
+
+/* Iframe del mapa de Google Maps */
+.location-map {
+    width: 100%;
+    height: 350px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: var(--porsche-spacing-md);
+}
+
+/* ==========================================================================
+   8. FOOTER (pie de página, compartido por todas las páginas)
+   ========================================================================== */
+
+/* Contenedor principal del footer */
+.site-footer {
+    background-color: var(--porsche-gray-dark); /* Se invierte automáticamente en modo oscuro */
+    color: #ffffff;
+    padding: var(--porsche-spacing-xl) var(--porsche-spacing-lg) var(--porsche-spacing-md);
+    margin-top: var(--porsche-spacing-xl);       /* Separación del contenido de arriba */
+}
+
+/* Grilla de columnas: marca + enlaces + contacto */
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;  /* La marca ocupa el doble que cada columna de enlaces */
+    gap: var(--porsche-spacing-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: var(--porsche-spacing-lg);
+}
+
+/* En móvil: todo apilado en una sola columna */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Nombre de marca dentro del footer */
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    margin-bottom: var(--p-spacing-static-sm);
+}
+
+/* Descripción corta debajo del logo */
+.footer-tagline {
+    opacity: 0.7;
+    font-size: 0.9rem;
+    max-width: 320px;
+}
+
+/* Título de cada columna (Enlaces, Contacto) */
+.footer-column h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--p-spacing-static-md);
+    opacity: 0.9;
+}
+
+/* Lista de enlaces de cada columna */
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: var(--p-spacing-static-sm);
+}
+
+.footer-column a {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity var(--p-duration-sm) var(--p-ease-in-out);
+}
+
+.footer-column a:hover {
+    opacity: 1;
+}
+
+/* Línea inferior con el copyright */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: var(--p-spacing-static-md);
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   9. PÁGINA "NOSOTROS" (Historia, Misión, Visión, Compromiso)
+   ========================================================================== */
+
+/* Banner superior de la página: más presencia y minimalista */
+.page-banner {
+    margin-top: 70px;                   /* Compensa la navbar fija */
+    padding: var(--porsche-spacing-xl) var(--porsche-spacing-lg);
+    padding-top: 5rem;                  /* Más aire arriba */
+    text-align: center;
+    background-color: var(--porsche-bg); /* Usa el fondo del tema (adaptativo) */
+    color: var(--porsche-text);         /* Usa el color de texto del tema */
+    border-bottom: none;                /* Quita línea para look más limpio */
+    min-height: 350px;                  /* Más presencia visual */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-banner-title {
+    font-size: clamp(2.5rem, 4vw + 1.5rem, 4rem); /* Más grande y fluido */
+    font-weight: 300;                   /* Más delgado, estilo premium */
+    margin-bottom: var(--p-spacing-static-md);
+    letter-spacing: -0.5px;             /* Tracking ajustado */
+}
+
+.page-banner-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.7;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    letter-spacing: -0.3px;
+}
+
+/* Contenedor genérico para las secciones de contenido de esta página */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem var(--porsche-spacing-lg);    /* Más espaciado vertical */
+}
+
+/* Franja de fondo alterno para separar visualmente secciones consecutivas */
+.content-section--alt {
+    background-color: var(--porsche-gray-light); /* Se adapta al tema automáticamente */
+    color: var(--porsche-text);         /* Asegura legibilidad */
+}
+
+.section-heading {
+    font-size: clamp(2rem, 3vw + 1.2rem, 2.5rem);
+    font-weight: 300;                   /* Más delgado para look minimalista */
+    margin-bottom: 3rem;                /* Más espaciado */
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* --- Historia: texto + imagen lado a lado, layout premium --- */
+.historia-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;     /* Texto más grande */
+    gap: var(--porsche-spacing-xl);
+    gap: 4rem;                              /* Más espacio */
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .historia-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.historia-text p {
+    margin-bottom: var(--p-spacing-static-md);
+    line-height: 1.8;                   /* Más aire entre líneas: mejora la lectura de párrafos largos */
+    color: var(--porsche-text);
+    opacity: 0.85;
+    font-size: 1.05rem;                 /* Ligeramente más grande */
+}
+
+.historia-image {
+    border-radius: var(--p-radius-2xl);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+
+.historia-image img {
+    background: #feffff;
+    border-radius: 20px;
+    padding: 30px;
+    width: 400px;
+    height: 350px;
+    display: auto;
+}
+
+/* --- Misión y Visión: dos tarjetas lado a lado, más grandes y premium --- */
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--porsche-spacing-lg);
+    gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .mv-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mv-card {
+    background-color: var(--porsche-bg);
+    border: 1px solid var(--porsche-border);
+    border-radius: var(--p-radius-xl);
+    padding: var(--porsche-spacing-lg);
+    box-shadow: var(--p-shadow-sm);
+}
+
+.mv-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--p-spacing-static-sm);
+}
+
+.mv-card p {
+    line-height: 1.7;
+    opacity: 0.85;
+}
+
+/* --- Compromiso con el cliente: grilla de valores con ícono, más grande y premium --- */
+.compromiso-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--porsche-spacing-lg);
+    gap: 2rem;
+}
+
+.compromiso-card {
+    text-align: center;
+    padding: var(--porsche-spacing-lg) var(--p-spacing-static-md);
+    padding: 2.5rem 1.5rem;             /* Más espaciado */
+    border-radius: 12px;                /* Ligeramente redondeado */
+    transition: transform var(--p-duration-md) var(--p-ease-in-out);
+}
+
+.compromiso-card:hover {
+    transform: translateY(-4px);        /* Levanta en hover */
+}
+
+/* Círculo con el ícono/emoji de cada valor: más grande y premium */
+.compromiso-icon {
+    width: 72px;                        /* Más grande */
+    height: 72px;
+    margin: 0 auto var(--p-spacing-static-md);
+    margin-bottom: 1.5rem;              /* Más espacio */
+    border-radius: 50%;
+    background-color: var(--porsche-primary);
+    color: var(--porsche-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;                  /* Emoji más grande */
+}
+
+.compromiso-card h3 {
+    font-size: 1.3rem;                  /* Más grande */
+    font-weight: 600;
+    margin-bottom: var(--p-spacing-static-xs);
+    margin-bottom: 1rem;
+}
+
+.compromiso-card p {
+    font-size: 1rem;                    /* Más legible */
+    opacity: 0.8;
+    line-height: 1.6;
+}

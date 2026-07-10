@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento HTML -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | Válvulas Ros</title>
+
+    <!-- SEO: descripción específica de esta página -->
+    <meta name="description" content="Conoce la historia, misión, visión y compromiso con el cliente de Válvulas Ros, proveedor de tuberías, válvulas y conexiones industriales.">
+
+    <!-- Preconexiones a Google Fonts para mejorar velocidad de carga -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Importa la fuente Inter en varios pesos (300, 400, 600, 700) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Mismo archivo CSS que index.html: un solo sistema de diseño para todo el sitio -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ========== BARRA DE NAVEGACIÓN FLOTANTE ==========
+         Idéntica a la de index.html a propósito: la navbar y el sidebar
+         deben verse y comportarse igual en todas las páginas del sitio. -->
+    <nav class="porsche-navbar">
+        <!-- Sección izquierda: botón para abrir el menú lateral -->
+        <div class="nav-left">
+            <button id="menu-open-btn" class="porsche-menu-btn" aria-label="Abrir menú">
+                <span class="menu-text">Menú</span>
+            </button>
+        </div>
+
+        <!-- Sección central: logo/nombre de la empresa (enlaza al inicio) -->
+        <div class="nav-center">
+            <a href="index.html" class="porsche-main-logo">Valvulas Ros</a>
+        </div>
+
+        <!-- Sección derecha: botón para cambiar entre tema claro/oscuro -->
+        <div class="nav-right">
+            <button id="theme-toggle" class="porsche-btn-toggle" aria-label="Cambiar tema">
+    <img src="images/logo_simple.png" alt="" class="theme-icon">
+</button>
+        </div>
+    </nav>
+
+    <!-- ========== MENÚ LATERAL DESPLEGABLE ========== -->
+    <div id="porsche-sidebar" class="porsche-sidebar-wrapper">
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <button id="menu-close-btn" class="porsche-close-btn" aria-label="Cerrar menú">&times;</button>
+            </div>
+
+            <nav class="sidebar-navigation">
+                <ul class="sidebar-menu-list">
+                    <!-- Menú Principal: PRODUCTOS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="productos" aria-expanded="false" aria-controls="submenu-productos">
+                            <span class="menu-parent-text">PRODUCTOS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-productos">
+                            <li><a href="#" class="submenu-link">PVC</a></li>
+                            <li><a href="#" class="submenu-link">Acero al Carbón</a></li>
+                            <li><a href="#" class="submenu-link">Acero Inoxidable</a></li>
+                            <li><a href="#" class="submenu-link">Cobre</a></li>
+                            <li><a href="#" class="submenu-link">Galvanizado</a></li>
+                            <li><a href="#" class="submenu-link">Bridas</a></li>
+                            <li><a href="#" class="submenu-link">Válvulas</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Menú Principal: SERVICIOS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="servicios" aria-expanded="false" aria-controls="submenu-servicios">
+                            <span class="menu-parent-text">SERVICIOS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-servicios">
+                            <li><a href="#" class="submenu-link">Cotización</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Menú Principal: MARCAS -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="marcas" aria-expanded="false" aria-controls="submenu-marcas">
+                            <span class="menu-parent-text">MARCAS</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-marcas">
+                            <li><a href="#" class="submenu-link">Válvulas Ros Premium</a></li>
+                            <li><a href="#" class="submenu-link">Tuberías Estándar</a></li>
+                            <li><a href="#" class="submenu-link">Conexiones Pro</a></li>
+                            <li><a href="#" class="submenu-link">Accesorios Industrial</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Menú Principal: EMPRESA -->
+                    <li class="menu-item-parent">
+                        <button class="menu-parent-btn" data-submenu="empresa" aria-expanded="false" aria-controls="submenu-empresa">
+                            <span class="menu-parent-text">EMPRESA</span>
+                            <span class="menu-arrow">›</span>
+                        </button>
+                        <ul class="submenu" id="submenu-empresa">
+                            <li><a href="nosotros.html" class="submenu-link">Quiénes Somos</a></li>
+                            <li><a href="#" class="submenu-link">Contacto</a></li>
+                            <li><a href="index.html" class="submenu-link">Ubicaciones</a></li>
+                            <li><a href="#" class="submenu-link">Carrera</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ========== BANNER DE LA PÁGINA ========== -->
+    <!-- Versión estática (sin video) del hero: esta página es informativa,
+         no necesita el mismo peso visual que la portada -->
+    <header class="page-banner">
+        <h1 class="page-banner-title">Quiénes Somos</h1>
+        <p class="page-banner-subtitle">Más de dos décadas suministrando tuberías, válvulas y conexiones a la industria mexicana.</p>
+    </header>
+
+    <main>
+        <!-- ========== NUESTRA HISTORIA ========== -->
+        <section class="content-section" aria-labelledby="historia-heading">
+            <h2 class="section-heading" id="historia-heading">Nuestra Historia</h2>
+            <div class="historia-grid">
+                <!-- Texto: reemplaza este contenido de ejemplo con la historia real de la empresa -->
+                <div class="historia-text">
+                    <p>En Válvulas Ros, entendemos que la continuidad de sus operaciones no admite demoras. Por ello, nos hemos consolidado como el aliado estratégico de la industria mexicana, garantizando certidumbre y excelencia en cada entrega de tuberías, válvulas y conexiones.</p>
+
+                    <p>Contamos con un robusto inventario multimetal y sintético —PVC, acero al carbón e inoxidable, cobre y galvanizado— diseñado para responder a la exigencia de cualquier proyecto. Gracias a nuestra red de distribución con sedes en Puebla, Querétaro, Guadalajara y la Ciudad de México, estamos exactamente donde su operación nos requiere.</p>
+
+                    <p>Más allá de comercializar componentes, entregamos valor: ingeniería, asesoría técnica transparente y productos rigurosamente certificados.</p>
+                </div>
+                <!-- Imagen de referencia: reemplazar por una foto real de instalaciones/equipo -->
+                <div class="historia-image">
+                    <img src="images/logo.webp" alt="Instalaciones de Válvulas Ros">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MISIÓN Y VISIÓN ========== -->
+        <section class="content-section content-section--alt" aria-labelledby="mv-heading">
+            <h2 class="section-heading" id="mv-heading">Misión y Visión</h2>
+            <div class="mv-grid">
+                <article class="mv-card">
+                    <h3>Misión</h3>
+                    <p>Proveer tuberías, válvulas y conexiones industriales de calidad certificada, con asesoría técnica especializada y tiempos de entrega confiables, para que cada proyecto de nuestros clientes se instale sin contratiempos.</p>
+                </article>
+                <article class="mv-card">
+                    <h3>Visión</h3>
+                    <p>Ser el proveedor de referencia en soluciones de tubería industrial en México, reconocido por la calidad de nuestros productos, la rapidez de nuestro servicio y la cercanía con cada cliente.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========== COMPROMISO CON EL CLIENTE ========== -->
+        <section class="content-section" aria-labelledby="compromiso-heading">
+            <h2 class="section-heading" id="compromiso-heading">Nuestro Compromiso con el Cliente</h2>
+            <div class="compromiso-grid">
+                <article class="compromiso-card">
+                    <div class="compromiso-icon" aria-hidden="true">✓</div>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Materiales certificados y probados, con garantía en cada pieza que sale de nuestras sucursales.</p>
+                </article>
+                <article class="compromiso-card">
+                    <div class="compromiso-icon" aria-hidden="true">⏱</div>
+                    <h3>Entregas Puntuales</h3>
+                    <p>Tiempos de entrega reales y comunicados con claridad, para que tu proyecto no se detenga.</p>
+                </article>
+                <article class="compromiso-card">
+                    <div class="compromiso-icon" aria-hidden="true">🛠</div>
+                    <h3>Asesoría Técnica</h3>
+                    <p>Personal capacitado que te ayuda a elegir el material y la especificación correcta para tu instalación.</p>
+                </article>
+                <article class="compromiso-card">
+                    <div class="compromiso-icon" aria-hidden="true">📞</div>
+                    <h3>Soporte Post-Venta</h3>
+                    <p>Seguimos disponibles después de la compra ante cualquier duda, garantía o pedido adicional.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER (idéntico al de index.html) ========== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <p class="footer-logo">VÁLVULAS ROS</p>
+                <p class="footer-tagline">Soluciones industriales en tuberías, válvulas y conexiones.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:ventas@valvulasros.com">ventas@valvulasros.com</a></li>
+                    <li><a href="tel:+525555550198">(55) 5555-0198</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="footer-year"></span> Válvulas Ros. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Esta página solo necesita el JS compartido: no tiene catálogo de
+         sucursales ni video de hero, así que NO se incluye home.js aquí. -->
+    <script src="js/main.js"></script>
+</body>
+</html>
