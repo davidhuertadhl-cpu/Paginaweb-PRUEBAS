@@ -67,7 +67,8 @@ const detailsSection = document.getElementById('porsche-details-view');
 const backBtn = document.getElementById('back-btn');
 
 if (catalogSection && detailsSection) {
-    document.querySelectorAll('.card-link').forEach((link) => {
+    // Solo agregar event listener a tarjetas de sucursales (que tienen data-sucursal)
+    document.querySelectorAll('.porsche-card[data-sucursal] .card-link').forEach((link) => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const card = e.target.closest('.porsche-card');
