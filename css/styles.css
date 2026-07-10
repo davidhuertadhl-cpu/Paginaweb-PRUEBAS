@@ -132,14 +132,21 @@ body.dark-mode {
     padding: 0;                         /* Sin margen interno */
 }
 
+/* Transiciones suaves para cambios de tema en todos los elementos */
+*:not(.porsche-btn-toggle .theme-icon) {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 /* Estilos generales del body */
 body {
     font-family: var(--p-font-sans); /* Usa Porsche Next */
     font-weight: var(--p-font-weight-normal);
     background-color: var(--porsche-bg); /* Fondo que cambia con tema */
     color: var(--porsche-text);         /* Texto que cambia con tema */
-    transition: background-color var(--p-duration-md) var(--p-ease-in-out), 
-                color var(--p-duration-md) var(--p-ease-in-out); /* Transición Porsche */
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave profesional */
     word-wrap: break-word;              /* Ajusta palabras largas */
     word-break: break-word;             /* Quiebra palabras si es necesario */
     overflow-x: auto;                   /* Permite scroll si es absolutamente necesario */
@@ -206,7 +213,8 @@ a:focus-visible {
     backdrop-filter: blur(12px);        /* Efecto de vidrio borroso */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
     z-index: var(--z-navbar);           /* Por encima de otros elementos */
-    transition: background-color var(--p-duration-md) var(--p-ease-in-out);
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Secciones de la navbar: izquierda y derecha */
@@ -259,12 +267,29 @@ a:focus-visible {
     cursor: pointer;
     color: #ffffff;
     margin-left: auto;
+    padding: var(--porsche-spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.3s ease;
+    will-change: transform;
+}
+
+.porsche-btn-toggle:hover {
+    transform: scale(1.15) rotate(-15deg);
+}
+
+.porsche-btn-toggle:active {
+    transform: scale(0.9) rotate(15deg);
 }
 
 .theme-icon {
     width: 32px;
     height: 32px;
     display: block;
+    transition: opacity 0.3s ease;
+}
 }
 
 /* ==========================================================================

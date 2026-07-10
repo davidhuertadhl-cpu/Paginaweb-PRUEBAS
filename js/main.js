@@ -20,7 +20,16 @@ const themeToggleBtn = document.getElementById('theme-toggle');
 
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
+        // Agregar animación al botón
+        themeToggleBtn.style.transform = 'rotate(180deg) scale(1.2)';
+        
+        // Togglear modo oscuro
         document.body.classList.toggle('dark-mode');
+        
+        // Remover animación después de que termine
+        setTimeout(() => {
+            themeToggleBtn.style.transform = '';
+        }, 600);
     });
 }
 
